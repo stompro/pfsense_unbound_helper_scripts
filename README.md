@@ -22,3 +22,6 @@ Set custom pfsense unbound config entries, then restart with a cache dump and re
 Set custom domain override config
 
 Load domain override file
+
+
+tcpdump related - find which machine is making requests for a certain domain.
