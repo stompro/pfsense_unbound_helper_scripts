@@ -23,5 +23,13 @@ Set custom domain override config
 
 Load domain override file
 
+Maybe let pfsense download a master domain override file on a regular schedule instead of pushing it out?  Not sure if that is any better than the push method though.
+
+Deploy master cache file to many sites.
+
+Clear cache for certain domains
+
+Clear cache for all local entries - 192.168.x.x related
 
 tcpdump related - find which machine is making requests for a certain domain.
+
