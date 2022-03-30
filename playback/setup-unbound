@@ -1,0 +1,27 @@
+print_r($config['unbound']);
+
+#set config values
+$config['unbound']['cache_max_ttl'] = "259200";
+$config['unbound']['cache_min_ttl'] = "7200";
+$config['unbound']['msgcachesize'] = "50";
+# set custome = "include: /var/unbound/custom-domainoverrides.conf"
+# must already be in place or unbound won't restart
+# This will wipe out any other custom options you have set
+$config['unbound']['custom_options'] = base64_encode("include: /var/unbound/custom-domainoverrides.conf");
+
+#Save
+write_config("Custom Unbound Settings Applied");
+
+#Backup unbound cache
+! /root/unbound-dumpcache.sh
+
+#Restart unbound - is there a better way to do this? "send_event("service restart unbound");"
+
+! pfSsh.php playback svc restart unbound
+
+! sleep 5
+
+#reload cache
+! /root/unbound-loadcache.sh
+
+#done
