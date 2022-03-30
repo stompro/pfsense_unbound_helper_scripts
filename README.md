@@ -19,7 +19,15 @@ Set custom pfsense unbound config entries, then restart with a cache dump and re
   -- Deploy pfsense unbound config to a bunch of firewalls at once.
 
 
+## Cisco Umbrella with pfSense
+One of my main goals of all this is reduce the number of queries that get sent to Cisco Umbrella so we don't hit their limits of 3000 queries a day per license.
+  * Set min and max TTL to larger numbers.
+  * Set a large cache size.
+  * Turn off register dynamic leases, since each lease that gets registered causes unbound to be rebooted and the cache to be cleared.
+  * Make it easy to dump and restore the cache for planned restarts.
+  * Bypass Umbrella dns servers for a list of safe commonly used domains.
 
+Another strategy would be to use a master central dns server, but I don't want to add a single point of failure.
 
 
 ## Todo Items
